@@ -1,62 +1,66 @@
-SDAG Standard: AI Infrastructure Risk Audit Framework
-Quantifying the hidden costs and structural inefficiencies of hyperscale LLM inference.
+# SDAG Standard: AI Infrastructure Risk Audit Framework
+**Quantifying structural inefficiencies and hidden operational costs in hyperscale LLM inference.**
 
-Overview
-The SDAG (Systematic Defect Awareness & Guidance) framework is an independent analytical standard designed to monitor Routing Entropy and Parasitic Compute in large-scale distributed AI environments.
+---
 
-As LLM architectures (MoE, Sparse Transformers) scale, a significant gap emerges between theoretical efficiency and actual operational expenditure (OpEx). SDAG provides the tools to measure this gap, projecting software-level inefficiencies onto physical hardware degradation and financial balance sheets.
-Engineering Context & Scope Constraints
-To ensure a productive technical dialogue with infrastructure engineers (Google, NVIDIA, OpenAI), we explicitly define the boundaries and methodology of the SDAG Standard v1.2.
+## Overview
+The **SDAG (Systematic Defect Awareness & Guidance)** framework is an independent research methodology designed to analyze **Routing Entropy**, **Parasitic Compute**, and **Architectural Overhead** in large-scale distributed AI inference systems.
 
-1. Black-Box Observability vs. Internal Telemetry
-SDAG is not a replacement for internal cluster monitoring systems (e.g., Borg, Monarch, or custom DCGM-based dashboards).
+As modern LLM architectures (Mixture-of-Experts, Sparse Transformers) scale to hyperscale clusters, a measurable divergence emerges between theoretical model efficiency and observed infrastructure performance. 
 
-The Problem: Internal telemetry captures current state (what is happening).
+SDAG provides an analytical bridge that maps software-level architectural friction to physical infrastructure stress and financial cost leakage.
 
-SDAG Mission: We focus on Inference-based Efficiency Mapping. By analyzing external signals—TTFT (Time To First Token) drift, latency variance, and throughput elasticity—we infer the systemic "efficiency gap" caused by architectural overheads (Alignment layers, MoE routing friction).
+---
 
-The Goal: To model observable systemic symptoms of inefficiency from the outside, providing a vendor-neutral audit layer.
+## 🛠️ Engineering Context & Scope Constraints
+To maintain a productive dialogue with infrastructure and SRE teams, SDAG explicitly defines its methodological boundaries:
 
-2. Economic Abstraction & Capital Allocation
-We treat Compute as a Capital Resource.
+### 1. Black-Box Observability
+SDAG does not replace internal telemetry systems (cluster schedulers, hardware counters). We focus on **systemic inefficiency inference** using external observability signals:
+* **TTFT drift** (Time To First Token)
+* **Latency variance**
+* **Throughput elasticity** under load
+* **Expert routing pressure** and safety-layer recursion.
 
-While internal dashboards optimize for FLOPs and MFU (Model Flops Utilization), SDAG asks a higher-level question: What is the systemic cost of architectural technical debt?
+### 2. Economic Abstraction: Compute as Capital
+While infrastructure dashboards optimize for **MFU (Model FLOPs Utilization)**, SDAG treats compute capacity as a capital resource. Architectural inefficiencies are translated into measurable capital costs:
+* Electrical power (Watts) and Cooling load.
+* Hardware wear and long-term **TCO (Total Cost of Ownership)** impact.
 
-We translate technical friction (routing entropy, recursive corrective passes) into economic metrics: Watts, hardware wear-and-tear, and TCO (Total Cost of Ownership).
+### 3. Software-Driven Thermal Prediction
+SDAG v1.2 introduces **Software-Defined Thermal Estimation**. Instead of waiting for thermal telemetry alerts, the framework models compute-induced stress using physical approximations:
+* **Arrhenius degradation model**
+* **Joule–Lenz law**
+These models allow SDAG to estimate how architectural overhead translates into increased power density and accelerated hardware degradation.
 
-At hyperscale, a 7.5% efficiency leak is not a monitoring glitch—it's a Capital Allocation failure.
+---
 
-3. Software-Driven Thermal Prediction (The Arrhenius Approach)
-We acknowledge that SDAG v1.2 does not directly access NVML/DCGM hardware sensors.
+## 📐 Core Methodology: Effective Compute Cost
 
-Methodology: We utilize Software-Defined Thermal Estimation. By modeling the intensity of tensor-core operations and routing overhead, we approximate the additional compute density.
+The **Effective Compute Cost (ECC)** models how architectural overhead inflates the theoretical compute requirement:
 
-Predictive Value: While telemetry tells us the current temperature, SDAG uses Arrhenius-based degradation modeling to estimate why hardware stress trends upward over time due to systemic software-level inefficiency. We track the trend, not just the event.
+$$ECC = \Phi_{base} \cdot (1 + \eta_{routing}) \cdot (1 + \sigma_{safety}) \cdot (1 + \delta_{thermal})$$
 
-Key Concepts
-Routing Entropy: Non-productive compute cycles caused by expert over-activation and load-balancing instability.
+Where:
+* $\Phi_{base}$: Theoretical FLOPs required for the baseline forward pass.
+* $\eta_{routing}$: Routing entropy caused by expert over-activation or load-balancing instability.
+* $\sigma_{safety}$: Safety validation overhead (policy enforcement, recursive alignment passes).
+* $\delta_{thermal}$: Hardware degradation coefficient derived from localized power density and estimated MTBF impact.
 
-Thermal Density Risk: The correlation between parasitic compute and accelerated hardware aging (MTBF reduction).
+### Empirical Baseline Hypothesis: 5–10%
+Preliminary research suggests that current hyperscale LLM deployments may exhibit a **5–10% structural overhead** attributable to architectural and safety-layer complexity. This estimate is cluster-specific, policy-dependent, and subject to calibration.
 
-Structural Baseline: A conservative empirical estimate (~7.5%) of unavoidable architectural overhead in current-gen hyperscale models.
+---
 
-Repository Structure
-/core: The diagnostic monitoring engine (sdag_monitor.py).
+## 🚀 Getting Started (Diagnostic Mode)
 
-/docs: Technical methodology and the physical/economic basis of the 7.5% baseline.
-
-/examples: Sample audit reports and integration scripts.
-
-Getting Started
-To run a baseline infrastructure audit, use the diagnostic module:
-**\`\`\`python**
+```python
 from core.sdag_monitor import SDAGDiagnosticMonitor
 
-monitor = SDAGDiagnosticMonitor(cluster_id="Enterprise-Alpha")
-monitor.generate_report(daily_token_volume=10**9) **\`\`\`**
-Status: Diagnostic Mode
-This version of the framework is for Audit & Diagnosis only.
-The optimization layer (SDAG-Heal), which actively mitigates routing entropy and stabilizes KV-cache pressure, is restricted to licensed enterprise partners to ensure infrastructure safety.
+# Initialize monitor for Hyperscale Cluster
+monitor = SDAGDiagnosticMonitor(cluster_id="Hyperscale-Alpha")
 
-Strategic Contact:
-For enterprise licensing, custom calibration, or detailed audit reports, contact Alex Buiko (Strategic Risk Consultant).
+# Generate infrastructure efficiency report (1B daily token baseline)
+report = monitor.generate_report(daily_token_volume=10**9)
+
+print(report.summary())eports, contact Alex Buiko (Strategic Risk Consultant).
